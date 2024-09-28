@@ -33,7 +33,7 @@
             
             <lvc:CartesianChart 
                 Series="{Binding Series}"
-                x:Name="CartesianChart"
+                x:Name="Chart"
                 ZoomMode="Both"
                 Width="1200" Height="450"
             />
@@ -44,6 +44,7 @@
             <Label x:Name="Label1" Content="0" FontSize="48"/>
             <Button Margin="6" Command="{Binding AddCommand}">Add</Button>
             <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button>
+            <Button Margin="6" Command="{Binding ClearCommand}">Clear</Button>
 
         </StackPanel>
     </Grid>

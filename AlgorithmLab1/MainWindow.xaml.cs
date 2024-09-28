@@ -1,7 +1,8 @@
 ﻿using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
-using LiveCharts;
+// using LiveCharts;
+// using LiveCharts.Defaults;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Reflection.Emit;
+using System.ComponentModel;
+using LiveCharts.Configurations;
+
 
 namespace AlgorithmLab1
 {
@@ -42,23 +46,25 @@ namespace AlgorithmLab1
         }
     }
 
-
-    public class ViewModel : ObservableObject
+// : INotifyPropertyChanged
+    public class ViewModel 
     {
-        public  ObservableCollection<ObservableValue> _observableValues;
+        public  ObservableCollection<ObservablePoint> _observableValues;
 
-        public ViewModel()
+        public ViewModel() 
         {
-            _observableValues = new ObservableCollection<ObservableValue>
+            _observableValues = new ObservableCollection<ObservablePoint>
             {
-                new ObservableValue(1),
-                new ObservableValue(2),
-                new ObservableValue(3),
-                new ObservableValue(4),
+                    new ObservablePoint(0, 4),
+                    new ObservablePoint(4, 0),
+                    new ObservablePoint(8, 4),
+                    new ObservablePoint(12, 0),
+                    new ObservablePoint(16, 4),
+                    new ObservablePoint(20, 0),
             };
             Series = new ObservableCollection<ISeries>
             {
-                    new LineSeries<ObservableValue>
+                    new LineSeries<ObservablePoint>
                     {
                         Values = _observableValues,
                         Fill = null
@@ -86,7 +92,7 @@ namespace AlgorithmLab1
 
         private void AddItem()
         {
-            _observableValues.Add(new ObservableValue(5));
+            _observableValues.Add(new ObservablePoint(5, 5));
         }
 
 
@@ -107,18 +113,51 @@ namespace AlgorithmLab1
 
         private void UITest()
         {
-            Series.Add(
-            new LineSeries<int>
+            _observableValues.Clear();
+            ObservableCollection<ObservablePoint> newValues = new ObservableCollection<ObservablePoint>
             {
-                Values = new ObservableCollection<ObservableValue>
-                {
-                    new ObservableValue(4),
-                    new ObservableValue(3),
-                    new ObservableValue(2),
-                    new ObservableValue(1),
-                }
-            });
+                    new ObservablePoint(0, 4),
+                    new ObservablePoint(1, 3),
+                    new ObservablePoint(3, 8),
+                    new ObservablePoint(18, 6),
+                    new ObservablePoint(20, 12)
+            };
+
+            // Да простит меня Бог Машин за столь ужасный костыль
+            foreach (var value in newValues)
+            {
+                _observableValues.Add(value);
+            }
         }
+
+
+
+
+
+        private RelayCommand clearCommand;
+
+        public ICommand ClearCommand
+        {
+            get
+            {
+                if (clearCommand == null)
+                {
+                    clearCommand = new RelayCommand(Clear);
+                }
+
+                return clearCommand;
+            }
+        }
+
+        private void Clear()
+        {
+            _observableValues.Clear();
+        }
+
+
+
+
+
     }
 
 }
@@ -164,3 +203,19 @@ namespace AlgorithmLab1
 //        };
 
 //}
+
+
+
+
+//#region INotifyPropertyChangedImplementation
+
+//public event PropertyChangedEventHandler PropertyChanged;
+
+//protected virtual void OnPropertyChanged(string propertyName = null)
+//{
+//    //Raise PropertyChanged event
+//    if (PropertyChanged != null)
+//        PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+//}
+
+//#endregion
