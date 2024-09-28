@@ -16,6 +16,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
@@ -40,7 +41,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
-            <Button x:Name="Run_btn" Width="200" Height="70" Click="Run_btn_Click" Content="Run it!" FontSize="36" />
+            <Button x:Name="Run_btn" Width="200" Height="70"  Content="Run it!" FontSize="36" Command="{Binding Run1Command}"/>
+           
             <Label x:Name="Label1" Content="0" FontSize="48"/>
             <Button Margin="6" Command="{Binding AddCommand}">Add</Button>
             <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button>
