@@ -23,7 +23,6 @@ namespace AlgorithmLab1
         public MainWindow()
         {
             InitializeComponent();
-            Console.WriteLine(GetInput.VectorInput(100));
         }
     }
 }
