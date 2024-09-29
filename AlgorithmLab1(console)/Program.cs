@@ -28,6 +28,14 @@ namespace AlgorithmLab1_console_
             s.ExecuteAlgorithm(ref x, n);
 
             Console.WriteLine(x);*/
+
+            TimSort b = new TimSort();
+            double[] time = Analyzer.Timing(2000, 5, b);
+
+            foreach (double t in time)
+            {
+                Console.WriteLine(t.ToString());
+            }
         }
     }
 }
