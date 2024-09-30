@@ -29,7 +29,7 @@ namespace AlgorithmLab1_console_
 
             Console.WriteLine(x);*/
 
-            TimSort b = new TimSort();
+             TimSort b = new TimSort();
             double[] time = Analyzer.Timing(2000, 5, b);
 
             foreach (double t in time)

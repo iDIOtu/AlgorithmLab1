@@ -16,6 +16,7 @@ namespace AlgorithmLab1_console_
 
         public virtual void ExecuteAlgorithm(int[] vector) { }
         public virtual void ExecuteAlgorithm(int[,] matrixA, int[,] matrixB) { }
-        public virtual void ExecuteAlgorithm(ref int x, int n) { }  
+        public virtual void ExecuteAlgorithm(ref int x, int n) { }
+        public virtual void ExecuteAlgorithm(int[,] array) { } // SumOfPairs.cs
     }
 }

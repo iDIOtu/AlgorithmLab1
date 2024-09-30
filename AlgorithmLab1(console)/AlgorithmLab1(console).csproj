@@ -50,6 +50,7 @@
     <Compile Include="Algorithms\PowAlgorithms\QuickPow.cs" />
     <Compile Include="Algorithms\PowAlgorithms\QuickPow1.cs" />
     <Compile Include="Algorithms\PowAlgorithms\RecPow.cs" />
+    <Compile Include="Algorithms\SumOfRows.cs" />
     <Compile Include="Algorithms\QuickSort.cs" />
     <Compile Include="Algorithms\TimSort.cs" />
     <Compile Include="Analyzer.cs" />

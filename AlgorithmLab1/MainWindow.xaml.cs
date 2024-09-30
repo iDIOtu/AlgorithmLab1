@@ -10,18 +10,6 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 
 
-/* ------------------------------------------------------------------------------------- /  
-                      Это один из худших кодов, что я писал и видел.
-                      Не стоит пытаться понять, нужно просто принять.
-                      Если что-то не работает, пишите в тележку.
- / ------------------------------------------------------------------------------------- */
-
-
-/* ------------------------------------------------------------------------------------- /  
-                 ТУДУ: в метод Run1 на строке 170 вставить вызов алгоритма №1. 
-                   Он должен вернуть то, что сейчас находится в этом методе.
-/ ------------------------------------------------------------------------------------- */
-
 namespace AlgorithmLab1
 {
     /// <summary>
@@ -33,151 +21,16 @@ namespace AlgorithmLab1
         {
             InitializeComponent();
         }
-    }
 
-// : INotifyPropertyChanged
-    public class ViewModel 
-    {
-        public  ObservableCollection<ObservablePoint> _observableValues;
-
-        public ViewModel() 
+        // Ищешь граф? Он в файле ViewModel. Тут его нет, уходи.
+        private void Run_btn1_Click(object sender, RoutedEventArgs e)
         {
-            _observableValues = new ObservableCollection<ObservablePoint>
-            {
-                    new ObservablePoint(0, 4),
-                    new ObservablePoint(4, 0),
-                    new ObservablePoint(8, 4),
-                    new ObservablePoint(12, 0),
-                    new ObservablePoint(16, 4),
-                    new ObservablePoint(20, 0),
-            };
-            Series = new ObservableCollection<ISeries>
-            {
-                    new LineSeries<ObservablePoint>
-                    {
-                        Values = _observableValues,
-                        Fill = null
-                    }
-            };
+            txtBox1.Text = "Wait a minute... Test is running.";
         }
 
-        public void UpdateData(ObservableCollection<ObservablePoint> newValues)
+        private void Clear_btn_Click(object sender, RoutedEventArgs e)
         {
-            _observableValues.Clear();
-            
-
-            // Да простит меня Бог Машин за столь ужасный костыль
-            foreach (var value in newValues)
-            {
-                _observableValues.Add(value);
-            }
-        }
-
-        public ObservableCollection<ISeries> Series { get; set; }
-
-
-        private RelayCommand addCommand;
-
-        public ICommand AddCommand
-        {
-            get
-            {
-                if (addCommand == null)
-                {
-                    addCommand = new RelayCommand(AddItem);
-                }
-
-                return addCommand;
-            }
-        }
-
-        private void AddItem()
-        {
-            _observableValues.Add(new ObservablePoint(5, 5));
-        }
-
-
-
-        private RelayCommand uITestCommand;
-        public ICommand UITestCommand
-        {
-            get
-            {
-                if (uITestCommand == null)
-                {
-                    uITestCommand = new RelayCommand(UITest);
-                }
-
-                return uITestCommand;
-            }
-        }
-
-        private void UITest()
-        {
-            _observableValues.Clear();
-            ObservableCollection<ObservablePoint> newValues = new ObservableCollection<ObservablePoint>
-            {
-                    new ObservablePoint(0, 4),
-                    new ObservablePoint(1, 3),
-                    new ObservablePoint(3, 8),
-                    new ObservablePoint(18, 6),
-                    new ObservablePoint(20, 12)
-            };
-
-            // Да простит меня Бог Машин за столь ужасный костыль
-            foreach (var value in newValues)
-            {
-                _observableValues.Add(value);
-            }
-        }
-
-        private RelayCommand clearCommand;
-
-        public ICommand ClearCommand
-        {
-            get
-            {
-                if (clearCommand == null)
-                {
-                    clearCommand = new RelayCommand(Clear);
-                }
-
-                return clearCommand;
-            }
-        }
-
-        private void Clear()
-        {
-            _observableValues.Clear();
-        }
-
-        private RelayCommand run1Command;
-
-        public ICommand Run1Command
-        {
-            get
-            {
-                if (run1Command == null)
-                {
-                    run1Command = new RelayCommand(Run1);
-                }
-
-                return run1Command;
-            }
-        }
-
-        private void Run1()
-        {
-            ObservableCollection<ObservablePoint> newValues = new ObservableCollection<ObservablePoint>
-            {
-                    new ObservablePoint(0, 4),
-                    new ObservablePoint(1, 3),
-                    new ObservablePoint(3, 8),
-                    new ObservablePoint(18, 6),
-                    new ObservablePoint(20, 12)
-            };
-
-            UpdateData(newValues);
+            txtBox1.Text = "The graph is cleared.";
         }
     }
 }
