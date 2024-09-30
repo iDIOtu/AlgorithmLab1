@@ -7,23 +7,20 @@ using System.Threading.Tasks;
 
 namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
-    internal class Pow : PowAlgorithm
+    internal class Pow : Algorithm
     {
-        public override void ExecuteAlgorithm(int[] vector, int power)
+        public override void ExecuteAlgorithm(ref int x, int n)
         {
-            for (int i = 0; i < vector.Length; i++)
+            f = 1;
+            k = 0;
+
+            while (k < n)
             {
-                f = 1;
-                k = 0;
-
-                while (k < power)
-                {
-                    f *= vector[i];
-                    k++;
-                }
-
-                vector[i] = f;
+                f *= x;
+                k++;
             }
+
+            x = f;
         }
     }
 }

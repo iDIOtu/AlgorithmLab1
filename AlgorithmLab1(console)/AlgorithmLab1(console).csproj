@@ -47,7 +47,6 @@
     <Compile Include="Algorithms\BubbleSort.cs" />
     <Compile Include="Algorithms\MatrixMultiplication.cs" />
     <Compile Include="Algorithms\PowAlgorithms\Pow.cs" />
-    <Compile Include="Algorithms\PowAlgorithms\PowAlgorithm.cs" />
     <Compile Include="Algorithms\PowAlgorithms\QuickPow.cs" />
     <Compile Include="Algorithms\PowAlgorithms\QuickPow1.cs" />
     <Compile Include="Algorithms\PowAlgorithms\RecPow.cs" />

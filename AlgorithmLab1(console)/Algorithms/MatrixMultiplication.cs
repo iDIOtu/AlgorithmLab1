@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AlgorithmLab1_console_.Algorithms
 {
-    internal class MatrixMultiplication
+    internal class MatrixMultiplication : Algorithm
     {
-        public void ExecuteAlgorithm(int[,] matrixA, int[,] matrixB)
+        public override void ExecuteAlgorithm(int[,] matrixA, int[,] matrixB)
         {
             int rowsA = matrixA.GetLength(0);
             int colsA = matrixA.GetLength(1);

@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 
 namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
-    internal class RecPow : PowAlgorithm
+    internal class RecPow : Algorithm
     {
-        public override void ExecuteAlgorithm(int[] vector, int n)
+        public override void ExecuteAlgorithm(ref int x, int n)
         {
-            for (int i = 0; i < vector.Length; i++)
-            {
-                vector[i] = Pow(vector[i], n);
-            }
+            x = Pow(x, n);
         }
         private int Pow(int x, int n)
         {
-            int f = 0;
+            f = 0;
             if (n == 0)
             {
                 f = 1;

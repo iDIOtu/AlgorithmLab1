@@ -29,8 +29,8 @@ namespace AlgorithmLab1_console_
 
             Console.WriteLine(x);*/
 
-            Pow b = new Pow();
-            double[] time = Analyzer.Timing(2000, 5, b, 2);
+            TimSort b = new TimSort();
+            double[] time = Analyzer.Timing(2000, 5, b);
 
             foreach (double t in time)
             {

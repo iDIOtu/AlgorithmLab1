@@ -33,14 +33,9 @@ namespace AlgorithmLab1
         {
             InitializeComponent();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 
-    // : INotifyPropertyChanged
+// : INotifyPropertyChanged
     public class ViewModel 
     {
         public  ObservableCollection<ObservablePoint> _observableValues;
