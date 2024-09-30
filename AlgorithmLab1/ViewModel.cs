@@ -60,7 +60,7 @@ namespace AlgorithmLab1
 
         // Эта функция трансформирует данные из массива в точки на графе, после чего передает их ему.
         // ИСПРАВИТЬ!
-        public void UpdateData(int[,] newValues)
+        public void UpdateData(double[,] newValues)
         {
             _observableValues.Clear();
 
@@ -174,9 +174,9 @@ namespace AlgorithmLab1
         }
         private void Run1()
         {
-            int[,] newValues = new int[10000, 2];
+            double[,] newValues = new double[50000, 2];
 
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 50000; i++)
             {
                 newValues[i, 0] = i;
                 newValues[i, 1] = i;
@@ -187,8 +187,8 @@ namespace AlgorithmLab1
 
         private RelayCommand run2Command;
         // Шаблон кнопки.
-        // В функцию Run2() вставить вызов нужной функции, которая вернет int[,]
-        // В конце передать int[,] в функцию UpdateData(int[,]);
+        // В функцию Run2() вставить вызов нужной функции, которая вернет double[,]
+        // В конце передать double[,] в функцию UpdateData(double[,]);
         public ICommand Run2Command
         {
             get
