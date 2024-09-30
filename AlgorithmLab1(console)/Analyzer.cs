@@ -1,4 +1,6 @@
 ﻿using AlgorithmLab1;
+using AlgorithmLab1_console_.Algorithms;
+using AlgorithmLab1_console_.Algorithms.PowAlgorithms;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,35 +14,79 @@ namespace AlgorithmLab1_console_
     {
         public static double[] Timing(int n, int repeats, Algorithm algorithm)
         {
-            double[,] allTests = new double[repeats, n];
-            Stopwatch sw = new Stopwatch();
+            double[] tests = new double[n];
 
-            for (int precision = 0; precision < repeats; precision++)
-                for (int dataSize = 0; dataSize < n; dataSize++)
+            for (int i = 0; i < n; i++)
+            {
+                double totalTime = 0;
+
+                for (int j = 0; j < repeats; j++)
                 {
-                    int[] data = Generator.VectorInput(n);
+                    int[] vector = Generator.VectorInput(i+1);
 
-                    sw.Start();
-                    algorithm.ExecuteAlgorithm(data);
-                    sw.Stop();
+                    Stopwatch stopwatch = Stopwatch.StartNew();
+                    algorithm.ExecuteAlgorithm(vector);
+                    stopwatch.Stop();
 
-                    allTests[precision, dataSize] = sw.ElapsedTicks / 10000000.0d;
-
-                    sw.Reset();
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
 
                 }
 
-            double[] timeApprox = new double[n];
+                tests[i] = totalTime / repeats;
+            }
+            return tests;
+        }
 
-            for (int dataSize = 0; dataSize < n; dataSize++)
+        public static double[] Timing(int n, int repeats, PowAlgorithm algorithm, int power)
+        {
+            double[] tests = new double[n];
+
+            for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < repeats; j++)
-                    timeApprox[dataSize] += allTests[j, dataSize];
+                double totalTime = 0;
 
-                timeApprox[dataSize] /= repeats;
+                for (int j = 0; j < repeats; j++)
+                {
+                    int[] vector = Generator.VectorInput(i + 1);
+
+                    Stopwatch stopwatch = Stopwatch.StartNew();
+                    algorithm.ExecuteAlgorithm(vector, power);
+                    stopwatch.Stop();
+
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
+
+                }
+
+                tests[i] = totalTime / repeats;
+            }
+            return tests;
+        }
+
+        public static double[] Timing(int n, int repeats, MatrixMultiplication algorithm)
+        {
+            double[] tests = new double[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                double totalTime = 0;
+
+                for (int j = 0; j < repeats; j++)
+                {
+                    int[,] matrix1 = Generator.MatrixInput(i + 1);
+                    int[,] matrix2 = Generator.MatrixInput(i + 1);
+
+                    Stopwatch stopwatch = Stopwatch.StartNew();
+                    algorithm.ExecuteAlgorithm(matrix1, matrix2);
+                    stopwatch.Stop();
+
+                    totalTime += stopwatch.Elapsed.TotalMilliseconds;
+
+                }
+
+                tests[i] = totalTime / repeats;
             }
 
-            return timeApprox;
+            return tests;
         }
     }
 }
