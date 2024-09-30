@@ -12,7 +12,7 @@ namespace AlgorithmLab1
 
             for (int i = 0; i < n; i++)
             {
-                vector[i] = random.Next();
+                vector[i] = random.Next(10000);
             }
 
             return vector;

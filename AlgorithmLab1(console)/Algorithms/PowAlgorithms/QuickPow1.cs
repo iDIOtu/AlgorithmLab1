@@ -6,30 +6,34 @@ using System.Threading.Tasks;
 
 namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
-    internal class QuickPow1 : Algorithm
+    internal class QuickPow1 : PowAlgorithm
     {
-        public override void ExecuteAlgorithm(ref int x, int n)
+        public override void ExecuteAlgorithm(int[] vector, int power)
         {
-            c = x;
-            f = 1;
-            k = n;
-
-            while (k != 0)
+            for (int i = 0; i < vector.Length; i++)
             {
-                if (k % 2 == 0)
+                c = vector[i];
+                f = 1;
+                k = power;
+
+                while (k != 0)
+
+
                 {
-                    c *= c;
-                    k /= 2;
+                    if (k % 2 == 0)
+                    {
+                        c *= c;
+                        k /= 2;
+                    }
+                    else
+                    {
+                        f *= c;
+                        k--;
+                    }
                 }
-                else
-                {
-                    f *= c;
-                    k--;
-                }
+
+                vector[i] = f;
             }
-
-            x = f;
         }
-
     }
 }

@@ -45,11 +45,18 @@
   <ItemGroup>
     <Compile Include="Algorithm.cs" />
     <Compile Include="Algorithms\BubbleSort.cs" />
+    <Compile Include="Algorithms\Constant.cs" />
+    <Compile Include="Algorithms\CycleSort.cs" />
+    <Compile Include="Algorithms\PowAlgorithms\PowAlgorithm.cs" />
+    <Compile Include="Algorithms\StoogeSort.cs" />
+    <Compile Include="Algorithms\Horner.cs" />
     <Compile Include="Algorithms\MatrixMultiplication.cs" />
+    <Compile Include="Algorithms\Multiply.cs" />
     <Compile Include="Algorithms\PowAlgorithms\Pow.cs" />
     <Compile Include="Algorithms\PowAlgorithms\QuickPow.cs" />
     <Compile Include="Algorithms\PowAlgorithms\QuickPow1.cs" />
     <Compile Include="Algorithms\PowAlgorithms\RecPow.cs" />
+    <Compile Include="Algorithms\Sum.cs" />
     <Compile Include="Algorithms\SumOfRows.cs" />
     <Compile Include="Algorithms\QuickSort.cs" />
     <Compile Include="Algorithms\TimSort.cs" />

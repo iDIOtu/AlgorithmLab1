@@ -13,9 +13,9 @@ namespace AlgorithmLab1_console_
     {
         static void Main(string[] args)
         {
-            /*TimSort sort = new TimSort();
+            /*ExchangeSort sort = new ExchangeSort();
 
-            int[] vector = GetInput.VectorInput(2000);
+            int[] vector = Generator.VectorInput(2000);
             sort.ExecuteAlgorithm(vector);
 
             Console.WriteLine(String.Join(" ", vector));*/
@@ -29,8 +29,8 @@ namespace AlgorithmLab1_console_
 
             Console.WriteLine(x);*/
 
-             TimSort b = new TimSort();
-            double[] time = Analyzer.Timing(2000, 5, b);
+            StoogeSort b = new StoogeSort();
+            double[] time = Analyzer.Timing(200, 5, b);
 
             foreach (double t in time)
             {
