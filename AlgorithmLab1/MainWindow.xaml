@@ -16,6 +16,9 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
 
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -24,14 +27,7 @@
         </Grid.RowDefinitions>
 
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Center">
-        <!--<lvc:CartesianChart
-            Series="{Binding DataSeries}"
-            x:Name="CartesianChart"
-            ZoomMode="Both"
-            Width="1200" Height="450"
-        />  -->
-            
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center">            
             <lvc:CartesianChart 
                 Series="{Binding Series}"
                 x:Name="Chart"
@@ -40,14 +36,36 @@
             />
         </StackPanel>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
-            <Button x:Name="Run_btn" Width="200" Height="70"  Content="Run it!" FontSize="36" Command="{Binding Run1Command}"/>
-           
-            <Label x:Name="Label1" Content="0" FontSize="48"/>
-            <Button Margin="6" Command="{Binding AddCommand}">Add</Button>
-            <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button>
-            <Button Margin="6" Command="{Binding ClearCommand}">Clear</Button>
 
+        <StackPanel Grid.Row="1" Grid.Column="0" >
+            <Button x:Name="Run_btn1" Width="200" Height="50" Margin="6"  Content="Run TEST" FontSize="36" Command="{Binding Run1Command}" Click="Run_btn1_Click" />
+            <Button x:Name="Run_btn2" Width="200" Height="50" Margin="6"  Content="button templates" FontSize="24" Command="{Binding Run2Command}"/>
+            <Button x:Name="Run_btn3" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run3Command}"/>
+            <Button x:Name="Run_btn4" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run4Command}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" >
+            <Button x:Name="Run_btn5" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run5Command}"/>
+            <Button x:Name="Run_btn6" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run6Command}"/>
+            <Button x:Name="Run_btn7" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run7Command}"/>
+            <Button x:Name="Run_btn8" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run8Command}"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2">
+
+            <Button x:Name="Run_btn9" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run9Command}"/>
+            <Button x:Name="Run_btn10" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run10Command}"/>
+            <Button x:Name="Run_btn11" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run11Command}"/>
+            <Button x:Name="Run_btn12" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run12Command}"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="3">
+            <Button Margin="6" Command="{Binding AddCommand}">TEST Add (5,5)</Button>
+            <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button>
+            <Button x:Name="Clear_btn" Margin="6" Command="{Binding ClearCommand}" Click="Clear_btn_Click">Clear</Button>
+            
+            <TextBox x:Name="txtBox1" Height="171" Width="294" />
         </StackPanel>
     </Grid>
     
