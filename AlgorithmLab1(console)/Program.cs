@@ -34,7 +34,7 @@ namespace AlgorithmLab1_console_
 
             foreach (double t in time)
             {
-                Console.WriteLine(t.ToString());
+               Console.WriteLine(t.ToString());
             }
         }
     }

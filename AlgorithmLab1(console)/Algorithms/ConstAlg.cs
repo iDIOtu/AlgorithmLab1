@@ -11,7 +11,7 @@ namespace AlgorithmLab1_console_.Algorithms
     {
 		public override void ExecuteAlgorithm(int[] vector) 
 		{
-			return 1;
+			x = 1;
 		}
 	}
 }

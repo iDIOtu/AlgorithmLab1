@@ -12,7 +12,7 @@ namespace AlgorithmLab1_console_
         protected int k;
         protected int c;
 
-        //proverka
+
 
         public virtual void ExecuteAlgorithm(int[] vector) { }
         public virtual void ExecuteAlgorithm(int[,] matrixA, int[,] matrixB) { }
