@@ -63,7 +63,7 @@ namespace AlgorithmLab1
             PowerTextBox = 2;
             NTextBox = 200;
             repeatTextBox = 5;
-            ConsoleTextBox = "8=======>";
+            ConsoleTextBox = "";
         }
 
         // Эта функция трансформирует данные из массива в точки на графе, после чего передает их ему.

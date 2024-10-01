@@ -37,17 +37,17 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Row="1" Grid.Column="0" >
-            <Button x:Name="Run_btn3" Width="200" Margin="6"  Content="Constant" FontSize="24" Command="{Binding RunConstantCommand}"/>
-            <Button x:Name="Run_btn4" Width="200" Margin="6"  Content="Sum" FontSize="24" Command="{Binding RunSumCommand}"/>
-            <Button x:Name="Run_btn5" Width="200" Margin="6"  Content="Multiply" FontSize="24" Command="{Binding RunMulCommand}"/>
-            <Button x:Name="Run_btn6" Width="200" Margin="6"  Content="Horner" FontSize="24" Command="{Binding RunHornerCommand}"/>
-            <Button x:Name="RunMatrixMul_btn" Width="200" Height="40" Margin="6"  Content="II Matrix Multiply" FontSize="24" Command="{Binding RunMatrixMulCommand}"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <Button x:Name="Run_btn3" Width="200" Margin="13"  Content="Постоянная функция" FontSize="20" Command="{Binding RunConstantCommand}" Height="36"/>
+            <Button x:Name="Run_btn4" Width="200" Margin="13"  Content="Сумма" FontSize="24" Command="{Binding RunSumCommand}"/>
+            <Button x:Name="Run_btn5" Width="200" Margin="13"  Content="Произведение" FontSize="24" Command="{Binding RunMulCommand}"/>
+            <Button x:Name="Run_btn6" Width="200" Margin="13"  Content="Метод Горнера" FontSize="24" Command="{Binding RunHornerCommand}"/>
+            <Button x:Name="RunMatrixMul_btn" Width="200" Height="36" Margin="13"  Content="II Умножение матриц" FontSize="18" Command="{Binding RunMatrixMulCommand}" />
             <!--<Label Width="200">Дополнительные алгоритмы:</Label>-->
             
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" >
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
             <!--<Label Width="200">Сортировки:</Label>--> 
             <Button x:Name="Run_btn7" Width="200"  Margin="6"  Content="Bubble Sort" FontSize="24" Command="{Binding RunBubbleCommand}"/>
             <Button x:Name="RunQuick_btn" Width="200"  Margin="6"  Content="Quick Sort" FontSize="24" Command="{Binding RunQuickCommand}"/>
@@ -56,16 +56,16 @@
             <Label Width="200">Дополнительные алгоритмы:</Label>
             <Button x:Name="Run_btn2" Width="200"  Margin="6"  Content="Stooge Sort" FontSize="24" Command="{Binding Run2Command}"/>
             <Button x:Name="RunCycleSort_btn" Width="200"  Margin="6"  Content="Cycle Sort" FontSize="24" Command="{Binding RunCycleCommand}"/>
-            <Button x:Name="RunSoR_btn" Width="200"  Margin="6"  Content="Sum of Rows" FontSize="24" Command="{Binding RunSoRCommand}"/>
+            <Button x:Name="RunSoR_btn" Width="200"  Margin="6"  Content="Сумма элементов строк" FontSize="18" Command="{Binding RunSoRCommand}" Height="36"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="2">
+        <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="200">Степенные алгоритмы:</Label>
-            <Button x:Name="Run_btn8" Width="200" Height="40" Margin="6"  Content="Pow" FontSize="25" Command="{Binding RunPowCommand}"/>
+            <Button x:Name="Run_btn8" Width="200" Height="40" Margin="6"  Content="Возведение в степень" FontSize="18" Command="{Binding RunPowCommand}"/>
             <!-- Btn#9 deleted. -->
-            <Button x:Name="Run_btn10" Width="200" Height="40" Margin="6"  Content="QuickPow" FontSize="25" Command="{Binding RunQuickPowCommand}"/>
-            <Button x:Name="Run_btn11" Width="200" Height="40" Margin="6"  Content="QuickPow1" FontSize="25" Command="{Binding RunQuickPow1Command}"/>
-            <Button x:Name="Run_btn12" Width="200" Height="40" Margin="6"  Content="RecPow" FontSize="25" Command="{Binding RunRecPowCommand}"/>
+            <Button x:Name="Run_btn10" Width="200" Height="40" Margin="6"  Content="Быстрый" FontSize="25" Command="{Binding RunQuickPowCommand}"/>
+            <Button x:Name="Run_btn11" Width="200" Height="40" Margin="6"  Content="Классический быстрый" FontSize="18" Command="{Binding RunQuickPow1Command}"/>
+            <Button x:Name="Run_btn12" Width="200" Height="40" Margin="6"  Content="Рекурсивный" FontSize="25" Command="{Binding RunRecPowCommand}"/>
             <Label Width="200">Степень:</Label>
             <TextBox x:Name="Power_tbox" Width="200" FontSize="24" Text="{Binding PowerTextBox}" />
 
@@ -76,7 +76,7 @@
             <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button> -->
             <Label>n = </Label>
             <TextBox x:Name="NBox1" Margin="6" Text="{Binding NTextBox}" FontSize="24"/>
-            <Label>Количество повторений (чего? как это написать нормально?)</Label>
+            <Label>Количество повторений</Label>
             <TextBox x:Name="repeatBox" Margin="6" Text="{Binding repeatTextBox}" FontSize="24"/>
             <Label>Не работающая консоль:</Label>
             <TextBox x:Name="ConsoleBox" Height="38" Margin ="6" Text="{Binding ConsoleTextBox}" FontSize="24"/>
