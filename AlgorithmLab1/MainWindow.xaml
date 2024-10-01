@@ -7,12 +7,12 @@
         
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
-<!-- -->
+        Title="Lab1" Height="850" Width="1200">
+    <!-- -->
     <Window.DataContext>
         <local:ViewModel />
     </Window.DataContext>
-   
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -27,46 +27,61 @@
         </Grid.RowDefinitions>
 
 
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center">            
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="4" VerticalAlignment="Center">
             <lvc:CartesianChart 
                 Series="{Binding Series}"
                 x:Name="Chart"
                 ZoomMode="Both"
-                Width="1200" Height="450"
+                Width="1200" Height="440"
             />
         </StackPanel>
 
 
         <StackPanel Grid.Row="1" Grid.Column="0" >
-            <Button x:Name="Run_btn1" Width="200" Height="50" Margin="6"  Content="Run TEST" FontSize="36" Command="{Binding Run1Command}" Click="Run_btn1_Click" />
-            <Button x:Name="Run_btn2" Width="200" Height="50" Margin="6"  Content="button templates" FontSize="24" Command="{Binding Run2Command}"/>
-            <Button x:Name="Run_btn3" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run3Command}"/>
-            <Button x:Name="Run_btn4" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run4Command}"/>
+            <Button x:Name="Run_btn3" Width="200" Margin="6"  Content="Constant" FontSize="24" Command="{Binding RunConstantCommand}"/>
+            <Button x:Name="Run_btn4" Width="200" Margin="6"  Content="Sum" FontSize="24" Command="{Binding RunSumCommand}"/>
+            <Button x:Name="Run_btn5" Width="200" Margin="6"  Content="Multiply" FontSize="24" Command="{Binding RunMulCommand}"/>
+            <Button x:Name="Run_btn6" Width="200" Margin="6"  Content="Horner" FontSize="24" Command="{Binding RunHornerCommand}"/>
+            <Button x:Name="RunMatrixMul_btn" Width="200" Height="40" Margin="6"  Content="II Matrix Multiply" FontSize="24" Command="{Binding RunMatrixMulCommand}"/>
+            <!--<Label Width="200">Дополнительные алгоритмы:</Label>-->
+            
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" >
-            <Button x:Name="Run_btn5" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run5Command}"/>
-            <Button x:Name="Run_btn6" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run6Command}"/>
-            <Button x:Name="Run_btn7" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run7Command}"/>
-            <Button x:Name="Run_btn8" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run8Command}"/>
+            <!--<Label Width="200">Сортировки:</Label>--> 
+            <Button x:Name="Run_btn7" Width="200"  Margin="6"  Content="Bubble Sort" FontSize="24" Command="{Binding RunBubbleCommand}"/>
+            <Button x:Name="RunQuick_btn" Width="200"  Margin="6"  Content="Quick Sort" FontSize="24" Command="{Binding RunQuickCommand}"/>
+            <Button x:Name="RunTim_btn" Width="200"  Margin="6"  Content="Tim Sort" FontSize="24" Command="{Binding RunTimCommand}"/>
+
+            <Label Width="200">Дополнительные алгоритмы:</Label>
+            <Button x:Name="Run_btn2" Width="200"  Margin="6"  Content="Stooge Sort" FontSize="24" Command="{Binding Run2Command}"/>
+            <Button x:Name="RunCycleSort_btn" Width="200"  Margin="6"  Content="Cycle Sort" FontSize="24" Command="{Binding RunCycleCommand}"/>
+            <Button x:Name="RunSoR_btn" Width="200"  Margin="6"  Content="Sum of Rows" FontSize="24" Command="{Binding RunSoRCommand}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2">
-
-            <Button x:Name="Run_btn9" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run9Command}"/>
-            <Button x:Name="Run_btn10" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run10Command}"/>
-            <Button x:Name="Run_btn11" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run11Command}"/>
-            <Button x:Name="Run_btn12" Width="200" Height="50" Margin="6"  Content="Template" FontSize="36" Command="{Binding Run12Command}"/>
+            <Label Width="200">Степенные алгоритмы:</Label>
+            <Button x:Name="Run_btn8" Width="200" Height="40" Margin="6"  Content="Pow" FontSize="25" Command="{Binding RunPowCommand}"/>
+            <!-- Btn#9 deleted. -->
+            <Button x:Name="Run_btn10" Width="200" Height="40" Margin="6"  Content="QuickPow" FontSize="25" Command="{Binding RunQuickPowCommand}"/>
+            <Button x:Name="Run_btn11" Width="200" Height="40" Margin="6"  Content="QuickPow1" FontSize="25" Command="{Binding RunQuickPow1Command}"/>
+            <Button x:Name="Run_btn12" Width="200" Height="40" Margin="6"  Content="RecPow" FontSize="25" Command="{Binding RunRecPowCommand}"/>
+            <Label Width="200">Степень:</Label>
+            <TextBox x:Name="Power_tbox" Width="200" FontSize="24" Text="{Binding PowerTextBox}" />
 
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="3">
-            <Button Margin="6" Command="{Binding AddCommand}">TEST Add (5,5)</Button>
-            <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button>
-            <Button x:Name="Clear_btn" Margin="6" Command="{Binding ClearCommand}" Click="Clear_btn_Click">Clear</Button>
-            
-            <TextBox x:Name="txtBox1" Height="171" Width="294" />
+            <!-- <Button Margin="6" Command="{Binding AddCommand}">TEST Add (5,5)</Button> 
+            <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button> -->
+            <Label>n = </Label>
+            <TextBox x:Name="NBox1" Margin="6" Text="{Binding NTextBox}" FontSize="24"/>
+            <Label>Количество повторений (чего? как это написать нормально?)</Label>
+            <TextBox x:Name="repeatBox" Margin="6" Text="{Binding repeatTextBox}" FontSize="24"/>
+            <Label>Не работающая консоль:</Label>
+            <TextBox x:Name="ConsoleBox" Height="38" Margin ="6" Text="{Binding ConsoleTextBox}" FontSize="24"/>
+            <Button x:Name="Clear_btn" Margin="6" FontSize="24" Command="{Binding ClearCommand}">Clear</Button>
         </StackPanel>
     </Grid>
-    
+
 </Window>
