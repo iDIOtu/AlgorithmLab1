@@ -9,7 +9,6 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.Input;
 
-
 namespace AlgorithmLab1
 {
     /// <summary>
@@ -23,14 +22,5 @@ namespace AlgorithmLab1
         }
 
         // Ищешь граф? Он в файле ViewModel. Тут его нет, уходи.
-        private void Run_btn1_Click(object sender, RoutedEventArgs e)
-        {
-            txtBox1.Text = "Wait a minute... Test is running.";
-        }
-
-        private void Clear_btn_Click(object sender, RoutedEventArgs e)
-        {
-            txtBox1.Text = "The graph is cleared.";
-        }
     }
 }
