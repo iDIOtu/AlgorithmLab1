@@ -36,7 +36,7 @@ namespace AlgorithmLab1
 
         public int PowerTextBox { get; set; } // Текстбокс, который управляет степенью степенных алгоритмов
         public int NTextBox { get; set; } // Текстбокс, который устанавливает n
-        public int repeatTextBox { get; set; } // Текстбокс, который устанавливает количество повторений
+        public int RepeatTextBox { get; set; } // Текстбокс, который устанавливает количество повторений
 
         public string ConsoleTextBox { get; set; } // Текстбокс, который выполняет роль консоли
 
@@ -57,12 +57,13 @@ namespace AlgorithmLab1
                     new LineSeries<ObservablePoint>
                     {
                         Values = _observableValues,
-                        Fill = null
+                        Fill = null,
+                        GeometrySize = 2
                     }
             };
             PowerTextBox = 2;
             NTextBox = 200;
-            repeatTextBox = 5;
+            RepeatTextBox = 5;
             ConsoleTextBox = "";
         }
 
@@ -248,7 +249,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             StoogeSort b = new StoogeSort();
-            double[] time = Analyzer.Timing(NTextBox, 5, b);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, b);
             UpdateData(time);
             ConsoleTextBox = "StoogeSort выполнен и измерен.";
         }
@@ -272,7 +273,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             Pow p = new Pow();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
             ConsoleTextBox = "Алгоритм возведения в степень выполнен и измерен.";
         }
@@ -297,7 +298,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             QuickPow p = new QuickPow();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
             ConsoleTextBox = "Алгоритм быстрого возведения в степень выполнен и измерен.";
         }
@@ -322,7 +323,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             QuickPow1 p = new QuickPow1();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
             ConsoleTextBox = "Алгоритм быстрого возведения в степень выполнен и измерен.";
         }
@@ -347,7 +348,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             RecPow p = new RecPow();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
             ConsoleTextBox = "Алгоритм возведения в степень выполнен и измерен.";
         }
@@ -374,7 +375,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             Constant c = new Constant();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, c);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, c);
             UpdateData(time);
             ConsoleTextBox = "Постоянство - признак константы.";
         }
@@ -400,7 +401,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             Sum p = new Sum();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Сумма элементов";
         }
@@ -425,7 +426,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             Multiply p = new Multiply();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Произведение элементов";
         }
@@ -451,7 +452,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             Horner p = new Horner();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Горнер.";
         }
@@ -477,7 +478,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             BubbleSort p = new BubbleSort();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Пузырьком";
         }
@@ -504,7 +505,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             QuickSort p = new QuickSort();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Быстрая сортировка";
         }
@@ -530,7 +531,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             TimSort p = new TimSort();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Гибридный алгоритм сортировки";
         }
@@ -558,7 +559,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             MatrixMultiplication p = new MatrixMultiplication();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Умножение матриц";
         }
@@ -582,7 +583,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             CycleSort p = new CycleSort();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "";
         }
@@ -606,7 +607,7 @@ namespace AlgorithmLab1
         {
             ConsoleTextBox = "Я не завис. \n Думаю.";
             SumOfRows p = new SumOfRows();
-            double[] time = Analyzer.Timing(NTextBox, repeatTextBox, p);
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
             ConsoleTextBox = "Сумма всех элементов строк двухмерного массива";
         }
