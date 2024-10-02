@@ -71,16 +71,16 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="3">
+        <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">
             <!-- <Button Margin="6" Command="{Binding AddCommand}">TEST Add (5,5)</Button> 
             <Button Margin="6" Command="{Binding UITestCommand}">Run UI Test</Button> -->
             <Label>n = </Label>
             <TextBox x:Name="NBox1" Margin="6" Text="{Binding NTextBox}" FontSize="24"/>
             <Label>Количество повторений</Label>
             <TextBox x:Name="repeatBox" Margin="6" Text="{Binding repeatTextBox}" FontSize="24"/>
-            <Label>Не работающая консоль:</Label>
-            <TextBox x:Name="ConsoleBox" Height="38" Margin ="6" Text="{Binding ConsoleTextBox}" FontSize="24"/>
-            <Button x:Name="Clear_btn" Margin="6" FontSize="24" Command="{Binding ClearCommand}">Clear</Button>
+            <!--<Label>Не работающая консоль:</Label>
+            <TextBox x:Name="ConsoleBox" Height="38" Margin ="6" Text="{Binding ConsoleTextBox}" FontSize="24"/> -->
+            <Button x:Name="Clear_btn"  Margin="6,69,6,16" FontSize="24" Command="{Binding ClearCommand}" Height="71" >Clear</Button>
         </StackPanel>
     </Grid>
 
