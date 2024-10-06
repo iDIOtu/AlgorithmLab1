@@ -46,8 +46,6 @@ namespace AlgorithmLab1
                     new ObservablePoint(4, 0),
                     new ObservablePoint(8, 4),
                     new ObservablePoint(12, 0),
-                    new ObservablePoint(16, 4),
-                    new ObservablePoint(20, 0),
             };
             _approximationValues = new ObservableCollection<ObservablePoint>
             {
@@ -56,8 +54,6 @@ namespace AlgorithmLab1
                     new ObservablePoint(4, 4),
                     new ObservablePoint(8, 0),
                     new ObservablePoint(12, 4),
-                    new ObservablePoint(16, 0),
-                    new ObservablePoint(20, 4),
             };
             Series = new ObservableCollection<ISeries>
             {
