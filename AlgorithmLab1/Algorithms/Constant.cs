@@ -10,7 +10,7 @@ namespace AlgorithmLab1_console_.Algorithms
     {
         public override void ExecuteAlgorithm(int[] vector)
         {
-            double arbuz = vector.Length * 2;
+            int x = 1;
         }
     }
 }
