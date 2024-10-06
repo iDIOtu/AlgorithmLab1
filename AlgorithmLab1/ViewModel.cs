@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using AlgorithmLab1_console_.Algorithms.PowAlgorithms;
 using System.Windows.Data;
 using System.Windows.Controls;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 /* ------------------------------------------------------------------------------------- /  
                       Это один из худших кодов, что я писал и видел.
@@ -19,59 +21,90 @@ using System.Windows.Controls;
                       Если что-то не работает, пишите в тележку.
  / ------------------------------------------------------------------------------------- */
 
-
-/* ------------------------------------------------------------------------------------- /  
-                 ТУДУ: в метод Run1 на строке *** вставить вызов алгоритма №1. 
-                   Он должен вернуть то, что сейчас находится в этом методе.
-/ ------------------------------------------------------------------------------------- */
-
-
 namespace AlgorithmLab1
 {
     // : INotifyPropertyChanged
     public class ViewModel
     {
-        public ObservableCollection<ObservablePoint> _observableValues; // тут лежат точки
+        public ObservableCollection<ObservablePoint> _observableValues; // тут лежат точки функции
+        public ObservableCollection<ObservablePoint> _approximationValues; // тут лежат точки аппроксимации
+
         public ObservableCollection<ISeries> Series { get; set; } // это для графика
 
         public int PowerTextBox { get; set; } // Текстбокс, который управляет степенью степенных алгоритмов
         public int NTextBox { get; set; } // Текстбокс, который устанавливает n
         public int RepeatTextBox { get; set; } // Текстбокс, который устанавливает количество повторений
-
-        public string ConsoleTextBox { get; set; } // Текстбокс, который выполняет роль консоли
+        public int StartTextBox { get; set; } // Текстбокс, который задает начальный объем данных
+        public int StepTextBox { get; set; } // Текстбокс, который задает шаг
 
         public ViewModel()
         {
             _observableValues = new ObservableCollection<ObservablePoint>
             {
-                // Стандартные данные. Отображаются при загрузке.
+                // Стандартные данные функции. Отображаются при загрузке.
                     new ObservablePoint(0, 4),
                     new ObservablePoint(4, 0),
                     new ObservablePoint(8, 4),
                     new ObservablePoint(12, 0),
-                    new ObservablePoint(16, 4),
-                    new ObservablePoint(20, 0),
+            };
+            _approximationValues = new ObservableCollection<ObservablePoint>
+            {
+                // Стандартные аппроксимации. Отображаются при загрузке.
+                    new ObservablePoint(0, 0),
+                    new ObservablePoint(4, 4),
+                    new ObservablePoint(8, 0),
+                    new ObservablePoint(12, 4),
             };
             Series = new ObservableCollection<ISeries>
             {
                     new LineSeries<ObservablePoint>
                     {
                         Values = _observableValues,
-                        Fill = null,
+                        Fill = new SolidColorPaint(SKColors.LightBlue),
                         GeometrySize = 2
+                    },
+                    new LineSeries<ObservablePoint>
+                    {
+                        Values = _approximationValues,
+                        Stroke = new SolidColorPaint(SKColors.Yellow, 4),
+                        Fill = null,
+                        GeometryStroke = new SolidColorPaint(SKColors.Yellow, 4),
+                        GeometryFill = new SolidColorPaint(SKColors.White, 4),                       
+                        GeometrySize = 2,
+                        
                     }
             };
+
+
             PowerTextBox = 2;
             NTextBox = 200;
             RepeatTextBox = 5;
-            ConsoleTextBox = "";
+            StartTextBox = 1;
+            StepTextBox = 10; 
         }
+
+        public Axis[] YAxis { get; set; } =
+        {
+            new Axis
+            {
+                Name = "Время выполнения, мс",
+            }
+        };
+        public Axis[] XAxis { get; set; } =
+{
+            new Axis
+            {
+                Name = "Количество данных, n",
+            }
+        };
+
 
         // Эта функция трансформирует данные из массива в точки на графе, после чего передает их ему.
         // ИСПРАВИТЬ!
         public void UpdateData(double[,] newValues)
         {
             _observableValues.Clear();
+            _approximationValues.Clear();
 
             // Да простит меня Бог Машин за столь ужасный костыль
             for (int i = 0; i < newValues.GetLength(0); i++) 
@@ -83,6 +116,7 @@ namespace AlgorithmLab1
         public void UpdateData(double[] newValues)
         {
             _observableValues.Clear();
+            _approximationValues.Clear();
 
             for (int i = 0; i < newValues.GetLength(0); i++)
             {
@@ -90,65 +124,34 @@ namespace AlgorithmLab1
             }
         }
 
+        public void UpdateData(double[] newValues, int start, int step)
+        {
+            _observableValues.Clear();
+            _approximationValues.Clear();
+ 
+            for (int i = 0; i < newValues.GetLength(0); i++)
+            {
+                _observableValues.Add(new ObservablePoint(start, newValues[i]));
+                start += step;
+            }
+        }
+        public void UpdateApproximation(double[] newValues, int start, int step)
+        {
+            _observableValues.Clear();
+            _approximationValues.Clear();
+
+            for (int i = 0; i < newValues.GetLength(0); i++)
+            {
+                _observableValues.Add(new ObservablePoint(start, newValues[i]));
+                start += step;
+            }
+        }
+
 
 
         //  -------------------  Обработчики команд из кнопок  -------------------  //
-        private RelayCommand addCommand;
-        // Команда для тестов, удалить к релизу
-        public ICommand AddCommand
-        {
-            get
-            {
-                if (addCommand == null)
-                {
-                    addCommand = new RelayCommand(AddItem);
-                }
 
-                return addCommand;
-            }
-        }
-
-        private void AddItem()
-        {
-            _observableValues.Add(new ObservablePoint(5, 5));
-        }
-
-
-        // Команда для тестов, удалить к релизу. Генерирует простой график. Можно и оставить, в общем-то
-        private RelayCommand uITestCommand;
-        public ICommand UITestCommand
-        {
-            get
-            {
-                if (uITestCommand == null)
-                {
-                    uITestCommand = new RelayCommand(UITest);
-                }
-
-                return uITestCommand;
-            }
-        }
-
-        private void UITest()
-        {
-            _observableValues.Clear();
-            ObservableCollection<ObservablePoint> newValues = new ObservableCollection<ObservablePoint>
-            {
-                    new ObservablePoint(0, 4),
-                    new ObservablePoint(1, 3),
-                    new ObservablePoint(3, 8),
-                    new ObservablePoint(18, 6),
-                    new ObservablePoint(20, 12)
-            };
-
-            // Да простит меня Бог Машин за столь ужасный костыль
-            foreach (var value in newValues)
-            {
-                _observableValues.Add(value);
-            }
-        }
-
-        // Очищает график. Текст в текстбокс вставляется в MainWindow.xaml.cs
+        // Очищает график. 
         private RelayCommand clearCommand;
         public ICommand ClearCommand
         {
@@ -166,7 +169,7 @@ namespace AlgorithmLab1
         private void Clear()
         {
             _observableValues.Clear();
-            ConsoleTextBox = "График очищен.";
+            _approximationValues.Clear();
         }
 
 
@@ -174,85 +177,6 @@ namespace AlgorithmLab1
 
         //  -------------------  Обработчики команд из кнопок:   -------------------  //
         //  -------------------        Запуск алгоритмов         -------------------  //
-
-
-        private RelayCommand run3Command;
-        // Шаблон кнопки.
-        // В функцию Run2() вставить вызов нужной функции, которая вернет double[,]
-        // В конце передать double[,] в функцию UpdateData(double[,]);
-        public ICommand Run3Command
-        {
-            get
-            {
-                if (run3Command == null)
-                {
-                    run3Command = new RelayCommand(Run2);
-                }
-
-                return run3Command;
-            }
-        }
-
-
-
-        private void Run3()
-        {
-            //UpdateData(newValues);
-        }
-
-        private RelayCommand run1Command;
-        // Кнопка Run TEST.
-        // В функцию Run1() вставить вызов нужной функции, которая вернет int[,]
-        // В конце передать int[,] в функцию UpdateData(int[,]);
-        public ICommand Run1Command
-        {
-            get
-            {
-                if (run1Command == null)
-                {
-                    run1Command = new RelayCommand(Run1);
-                }
-
-                return run1Command;
-            }
-        }
-        private void Run1()
-        {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
-            double[,] newValues = new double[50000, 2];
-
-            for (int i = 0; i < 50000; i++)
-            {
-                newValues[i, 0] = i;
-                newValues[i, 1] = i;
-            }
-
-            UpdateData(newValues);
-            ConsoleTextBox = "Run1 выполнен.";
-        }
-
-        // ------------------------------------------------------------------- I  StoogeSort()
-        private RelayCommand run2Command;
-        public ICommand Run2Command
-        {
-            get
-            {
-                if (run2Command == null)
-                {
-                    run2Command = new RelayCommand(Run2);
-                }
-
-                return run2Command;
-            }
-        }
-        private void Run2()
-        {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
-            StoogeSort b = new StoogeSort();
-            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, b);
-            UpdateData(time);
-            ConsoleTextBox = "StoogeSort выполнен и измерен.";
-        }
 
         // ------------------------------------------------------------------- I  RunPow()
         private RelayCommand runPowCommand;
@@ -271,11 +195,9 @@ namespace AlgorithmLab1
 
         private void RunPow()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             Pow p = new Pow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
-            ConsoleTextBox = "Алгоритм возведения в степень выполнен и измерен.";
         }
 
 
@@ -296,11 +218,9 @@ namespace AlgorithmLab1
 
         private void RunQuickPow()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             QuickPow p = new QuickPow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
-            ConsoleTextBox = "Алгоритм быстрого возведения в степень выполнен и измерен.";
         }
 
         // ------------------------------------------------------------------- I  RunQuick1Pow
@@ -321,11 +241,9 @@ namespace AlgorithmLab1
 
         private void RunQuickPow1()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             QuickPow1 p = new QuickPow1();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
-            ConsoleTextBox = "Алгоритм быстрого возведения в степень выполнен и измерен.";
         }
 
         // ------------------------------------------------------------------- I  RunRecPow
@@ -346,16 +264,37 @@ namespace AlgorithmLab1
 
         private void RunRecPow()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             RecPow p = new RecPow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
             UpdateData(time);
-            ConsoleTextBox = "Алгоритм возведения в степень выполнен и измерен.";
         }
 
 
         // ------------------------------------------------------------------- I  Алгоритмы, не связанные со степенью
         // ------------------------------------------------------------------- I  ~~~~~~~~~~~~~~~~~~~~
+        // ------------------------------------------------------------------- I  StoogeSort()
+        private RelayCommand run2Command;
+        public ICommand Run2Command
+        {
+            get
+            {
+                if (run2Command == null)
+                {
+                    run2Command = new RelayCommand(Run2);
+                }
+
+                return run2Command;
+            }
+        }
+        private void Run2()
+        {
+            StoogeSort b = new StoogeSort();
+            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, b);
+            UpdateData(time);
+        }
+
+
+
         // ------------------------------------------------------------------- I  RunConstant()
         private RelayCommand runConstantCommand;
 
@@ -373,11 +312,9 @@ namespace AlgorithmLab1
         }
         private void RunConstant()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             Constant c = new Constant();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, c);
             UpdateData(time);
-            ConsoleTextBox = "Постоянство - признак константы.";
         }
 
 
@@ -399,11 +336,9 @@ namespace AlgorithmLab1
 
         private void RunSum()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             Sum p = new Sum();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Сумма элементов";
         }
 
         // ------------------------------------------------------------------- I  RunMul()
@@ -424,11 +359,9 @@ namespace AlgorithmLab1
 
         private void RunMul()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             Multiply p = new Multiply();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Произведение элементов";
         }
 
 
@@ -450,11 +383,9 @@ namespace AlgorithmLab1
 
         private void RunHorner()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             Horner p = new Horner();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Горнер.";
         }
 
 
@@ -476,11 +407,9 @@ namespace AlgorithmLab1
 
         private void RunBubble()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             BubbleSort p = new BubbleSort();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Пузырьком";
         }
 
 
@@ -503,11 +432,9 @@ namespace AlgorithmLab1
 
         private void RunQuickSort()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             QuickSort p = new QuickSort();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Быстрая сортировка";
         }
 
 
@@ -529,11 +456,9 @@ namespace AlgorithmLab1
 
         private void RunTimSort()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             TimSort p = new TimSort();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Гибридный алгоритм сортировки";
         }
 
 
@@ -557,13 +482,13 @@ namespace AlgorithmLab1
 
         private void RunMatrixMul()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             MatrixMultiplication p = new MatrixMultiplication();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "Умножение матриц";
         }
 
+
+        // ------------------------------------------------------------------- II  RunCycle()
         private RelayCommand runCycleCommand;
 
         public ICommand RunCycleCommand
@@ -581,13 +506,12 @@ namespace AlgorithmLab1
 
         private void RunCycle()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             CycleSort p = new CycleSort();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
             UpdateData(time);
-            ConsoleTextBox = "";
         }
 
+        // ------------------------------------------------------------------- II  RunSoR()
         private RelayCommand runSoRCommand;
 
         public ICommand RunSoRCommand
@@ -605,11 +529,10 @@ namespace AlgorithmLab1
 
         private void RunSoR()
         {
-            ConsoleTextBox = "Я не завис. \n Думаю.";
             SumOfRows p = new SumOfRows();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p);
-            UpdateData(time);
-            ConsoleTextBox = "Сумма всех элементов строк двухмерного массива";
+            UpdateData(time, StartTextBox, StepTextBox);
+            //UpdateApproximation(Analyzer.Approximation(time), StartTextBox, StepTextBox);
         }
     }
 }
