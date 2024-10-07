@@ -86,6 +86,9 @@
     <Reference Include="LiveChartsCore.SkiaSharpView.WPF, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc92a3e13d40c573, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveChartsCore.SkiaSharpView.WPF.2.0.0-rc3.3\lib\net462\LiveChartsCore.SkiaSharpView.WPF.dll</HintPath>
     </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.5.0.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -172,6 +175,7 @@
     <Compile Include="Algorithms\SumOfRows.cs" />
     <Compile Include="Algorithms\TimSort.cs" />
     <Compile Include="Analyzer.cs" />
+    <Compile Include="Approximation.cs" />
     <Compile Include="Generator.cs" />
     <Compile Include="ViewModel.cs" />
     <Page Include="MainWindow.xaml">

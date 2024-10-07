@@ -1,6 +1,7 @@
 ﻿using AlgorithmLab1;
 using AlgorithmLab1_console_.Algorithms;
 using AlgorithmLab1_console_.Algorithms.PowAlgorithms;
+using MathNet.Numerics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,8 +30,9 @@ namespace AlgorithmLab1_console_
 
             Console.WriteLine(x);*/
 
-            StoogeSort b = new StoogeSort();
-            double[] time = Analyzer.Timing(200, 5, b);
+            double[] b = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+            double[] a = { 0.008, 0.002, 0.004, 0.006, 0.004, 0.004, 0.004, 0.004, 0.004, 0.004 };
+            double[] time = Fit.Polynomial(b, a, 3);
 
             foreach (double t in time)
             {
