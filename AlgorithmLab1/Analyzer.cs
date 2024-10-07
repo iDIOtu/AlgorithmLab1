@@ -22,7 +22,7 @@ namespace AlgorithmLab1_console_
 
                 for (int j = 0; j < repeats; j++)
                 {
-                    int[] vector = Generator.VectorInput(i + 1);
+                    int[] vector = Generator.VectorInput(i);
 
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     algorithm.ExecuteAlgorithm(vector);
@@ -73,8 +73,8 @@ namespace AlgorithmLab1_console_
 
                 for (int j = 0; j < repeats; j++)
                 {
-                    int[,] matrix1 = Generator.MatrixInput(i + 1);
-                    int[,] matrix2 = Generator.MatrixInput(i + 1);
+                    int[,] matrix1 = Generator.MatrixInput(i);
+                    int[,] matrix2 = Generator.MatrixInput(i);
 
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     algorithm.ExecuteAlgorithm(matrix1, matrix2);
@@ -101,7 +101,7 @@ namespace AlgorithmLab1_console_
 
                 for (int j = 0; j < repeats; j++)
                 {
-                    int[,] matrix = Generator.MatrixInput(i + 1);
+                    int[,] matrix = Generator.MatrixInput(i);
 
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     algorithm.ExecuteAlgorithm(matrix);

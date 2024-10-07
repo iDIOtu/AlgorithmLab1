@@ -77,10 +77,10 @@ namespace AlgorithmLab1
 
 
             PowerTextBox = 2;
-            NTextBox = 200;
+            NTextBox = 2000;
             RepeatTextBox = 5;
             StartTextBox = 1;
-            StepTextBox = 10; 
+            StepTextBox = 1; 
         }
 
         public Axis[] YAxis { get; set; } =
@@ -118,9 +118,12 @@ namespace AlgorithmLab1
             _observableValues.Clear();
             _approximationValues.Clear();
 
-            for (int i = 0; i < newValues.GetLength(0); i++)
+            double[] approxValues = Approximation.GetPolApproximation(StartTextBox, StepTextBox, newValues);  
+
+            for (int i = 0; i < newValues.Length; i++)
             {
                 _observableValues.Add(new ObservablePoint(i, newValues[i]));
+                _approximationValues.Add(new ObservablePoint(i, approxValues[i]));
             }
         }
 
