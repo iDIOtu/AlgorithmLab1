@@ -38,7 +38,7 @@ namespace AlgorithmLab1_console_
             return test;
         }
 
-        public static double[] Timing(int n, int repeats, PowAlgorithm algorithm, int power)
+        public static double[] Timing(int n,  int repeats, PowAlgorithm algorithm, int power)
         {
             double[] tests = new double[n];
 

@@ -81,8 +81,8 @@
 
 
             </ComboBox>
-
-            <Button x:Name="Clear_btn" Margin="6,28,6,0"  FontSize="24" Command="{Binding ClearCommand}" >Очистить график</Button>
+            <CheckBox x:Name="Checkbox" IsChecked="{Binding PreviousBox}" > Отображать предыдущий </CheckBox>
+            <Button x:Name="Clear_btn" Margin="6,12,6,0"  FontSize="24" Command="{Binding ClearCommand}" >Очистить график</Button>
         </StackPanel>
 
 

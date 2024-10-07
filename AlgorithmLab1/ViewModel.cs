@@ -28,6 +28,7 @@ namespace AlgorithmLab1
     {
         public ObservableCollection<ObservablePoint> _observableValues; // тут лежат точки функции
         public ObservableCollection<ObservablePoint> _approximationValues; // тут лежат точки аппроксимации
+        public ObservableCollection<ObservablePoint> _previousValues; // тут лежат точки предыдущего графика
 
         public ObservableCollection<ISeries> Series { get; set; } // это для графика
 
@@ -36,7 +37,8 @@ namespace AlgorithmLab1
         public int RepeatTextBox { get; set; } // Текстбокс, который устанавливает количество повторений
         public int StartTextBox { get; set; } // Текстбокс, который задает начальный объем данных
         public int StepTextBox { get; set; } // Текстбокс, который задает шаг
-
+        public bool PreviousBox { get; set; }
+        
         public ViewModel()
         {
             _observableValues = new ObservableCollection<ObservablePoint>
@@ -50,10 +52,14 @@ namespace AlgorithmLab1
             _approximationValues = new ObservableCollection<ObservablePoint>
             {
                 // Стандартные точки аппроксимации. Отображаются при загрузке.
-                    //new ObservablePoint(0, 0),
-                    //new ObservablePoint(4, 4),
-                    //new ObservablePoint(8, 0),
-                    //new ObservablePoint(12, 4),
+                    new ObservablePoint(0, 0),
+                    new ObservablePoint(4, 4),
+                    new ObservablePoint(8, 0),
+                    new ObservablePoint(12, 4),
+            };
+            _previousValues = new ObservableCollection<ObservablePoint>
+            {
+                // 
             };
             Series = new ObservableCollection<ISeries>
             {
@@ -72,6 +78,14 @@ namespace AlgorithmLab1
                         GeometryFill = new SolidColorPaint(SKColors.White, 4),                       
                         GeometrySize = 2,
                         
+                    },
+                    new LineSeries<ObservablePoint>
+                    {
+                        Values = _previousValues,
+                        Stroke = new SolidColorPaint(SKColors.Red, 1),
+                        Fill = null,
+                        GeometryStroke = new SolidColorPaint(SKColors.Red, 1),
+                        GeometrySize = 1,
                     }
             };
 
@@ -80,7 +94,8 @@ namespace AlgorithmLab1
             NTextBox = 2000;
             RepeatTextBox = 5;
             StartTextBox = 1;
-            StepTextBox = 1; 
+            StepTextBox = 10; 
+            PreviousBox = false;
         }
 
         public Axis[] YAxis { get; set; } =
@@ -101,37 +116,20 @@ namespace AlgorithmLab1
 
         // Эта функция трансформирует данные из массива в точки на графе, после чего передает их ему.
         // ИСПРАВИТЬ!
-        public void UpdateData(double[,] newValues)
-        {
-            _observableValues.Clear();
-            _approximationValues.Clear();
-
-            // Да простит меня Бог Машин за столь ужасный костыль
-            for (int i = 0; i < newValues.GetLength(0); i++) 
-            {
-                _observableValues.Add(new ObservablePoint(newValues[i, 0], newValues[i, 1]));
-            }
-        }
-
-        public void UpdateData(double[] newValues)
-        {
-            _observableValues.Clear();
-            _approximationValues.Clear();
-
-            double[] approxValues = Approximation.GetPolApproximation(StartTextBox, StepTextBox, newValues);  
-
-            for (int i = 0; i < newValues.Length; i++)
-            {
-                _observableValues.Add(new ObservablePoint(i, newValues[i]));
-                _approximationValues.Add(new ObservablePoint(i, approxValues[i]));
-            }
-        }
 
         public void UpdateData(double[] newValues, int start, int step)
         {
+            if (PreviousBox)
+            {
+                _previousValues.Clear();
+                foreach (var value in _observableValues)
+                {
+                    _previousValues.Add(value);
+                }
+            }
+            else _previousValues.Clear();
+
             _observableValues.Clear();
-            _approximationValues.Clear();
- 
             for (int i = 0; i < newValues.GetLength(0); i++)
             {
                 _observableValues.Add(new ObservablePoint(start, newValues[i]));
@@ -140,12 +138,11 @@ namespace AlgorithmLab1
         }
         public void UpdateApproximation(double[] newValues, int start, int step)
         {
-            _observableValues.Clear();
             _approximationValues.Clear();
 
             for (int i = 0; i < newValues.GetLength(0); i++)
             {
-                _observableValues.Add(new ObservablePoint(start, newValues[i]));
+                _approximationValues.Add(new ObservablePoint(start, newValues[i]));
                 start += step;
             }
         }
@@ -200,7 +197,9 @@ namespace AlgorithmLab1
         {
             Pow p = new Pow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -223,7 +222,9 @@ namespace AlgorithmLab1
         {
             QuickPow p = new QuickPow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- I  RunQuick1Pow
@@ -246,7 +247,9 @@ namespace AlgorithmLab1
         {
             QuickPow1 p = new QuickPow1();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- I  RunRecPow
@@ -269,7 +272,9 @@ namespace AlgorithmLab1
         {
             RecPow p = new RecPow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -293,7 +298,9 @@ namespace AlgorithmLab1
         {
             StoogeSort b = new StoogeSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, b);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -317,7 +324,9 @@ namespace AlgorithmLab1
         {
             Constant c = new Constant();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, c);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -341,7 +350,9 @@ namespace AlgorithmLab1
         {
             Sum p = new Sum();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- I  RunMul()
@@ -364,7 +375,9 @@ namespace AlgorithmLab1
         {
             Multiply p = new Multiply();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -388,7 +401,9 @@ namespace AlgorithmLab1
         {
             Horner p = new Horner();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -412,7 +427,9 @@ namespace AlgorithmLab1
         {
             BubbleSort p = new BubbleSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -437,7 +454,9 @@ namespace AlgorithmLab1
         {
             QuickSort p = new QuickSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -461,7 +480,9 @@ namespace AlgorithmLab1
         {
             TimSort p = new TimSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -487,7 +508,9 @@ namespace AlgorithmLab1
         {
             MatrixMultiplication p = new MatrixMultiplication();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
 
@@ -511,7 +534,9 @@ namespace AlgorithmLab1
         {
             CycleSort p = new CycleSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- II  RunSoR()
@@ -534,8 +559,9 @@ namespace AlgorithmLab1
         {
             SumOfRows p = new SumOfRows();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
+            double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
-            //UpdateApproximation(Analyzer.Approximation(time), StartTextBox, StepTextBox);
+            UpdateApproximation(approximation, StartTextBox, StepTextBox);           
         }
     }
 }
