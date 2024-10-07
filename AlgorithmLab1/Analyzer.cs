@@ -16,7 +16,7 @@ namespace AlgorithmLab1_console_
         {
             List<double> tests = new List<double>();
 
-            for (int i = start; i < n; i += steps)
+            for (int i = start; i <= n; i += steps)
             {
                 double totalTime = 0;
 
@@ -67,7 +67,7 @@ namespace AlgorithmLab1_console_
         {
             List<double> tests = new List<double>();
 
-            for (int i = start; i < n; i += steps)
+            for (int i = start; i <= n; i += steps)
             {
                 double totalTime = 0;
 
@@ -95,7 +95,7 @@ namespace AlgorithmLab1_console_
         {
             List<double> tests = new List<double>();
 
-            for (int i = start; i < n; i += steps)
+            for (int i = start; i <= n; i += steps)
             {
                 double totalTime = 0;
 
