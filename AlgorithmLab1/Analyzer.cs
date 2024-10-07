@@ -12,11 +12,11 @@ namespace AlgorithmLab1_console_
 {
     internal class Analyzer
     {
-        public static double[] Timing(int n, int repeats, Algorithm algorithm)
+        public static double[] Timing(int n, int start, int steps, int repeats, Algorithm algorithm)
         {
-            double[] tests = new double[n];
+            List<double> tests = new List<double>();
 
-            for (int i = 0; i < n; i++)
+            for (int i = start; i < n; i += steps)
             {
                 double totalTime = 0;
 
@@ -31,10 +31,11 @@ namespace AlgorithmLab1_console_
                     totalTime += stopwatch.Elapsed.TotalMilliseconds;
                 }
 
-                tests[i] = totalTime / repeats;
+                tests.Add(totalTime / repeats);
             }
-            
-            return tests;
+
+            double[] test = tests.ToArray();
+            return test;
         }
 
         public static double[] Timing(int n, int repeats, PowAlgorithm algorithm, int power)
@@ -62,11 +63,11 @@ namespace AlgorithmLab1_console_
             return tests;
         }
 
-        public static double[] Timing(int n, int repeats, MatrixMultiplication algorithm)
+        public static double[] Timing(int n, int start, int steps, int repeats, MatrixMultiplication algorithm)
         {
-            double[] tests = new double[n];
+            List<double> tests = new List<double>();
 
-            for (int i = 0; i < n; i++)
+            for (int i = start; i < n; i += steps)
             {
                 double totalTime = 0;
 
@@ -83,17 +84,18 @@ namespace AlgorithmLab1_console_
 
                 }
 
-                tests[i] = totalTime / repeats;
+                tests.Add(totalTime / repeats);
             }
 
-            return tests;
+            double[] test = tests.ToArray();
+            return test;
         }
 
-        public static double[] Timing(int n, int repeats, SumOfRows algorithm)
+        public static double[] Timing(int n, int start, int steps, int repeats, SumOfRows algorithm)
         {
-            double[] tests = new double[n];
+            List<double> tests = new List<double>();
 
-            for (int i = 0; i < n; i++)
+            for (int i = start; i < n; i += steps)
             {
                 double totalTime = 0;
 
@@ -109,10 +111,11 @@ namespace AlgorithmLab1_console_
 
                 }
 
-                tests[i] = totalTime / repeats;
+                tests.Add(totalTime / repeats);
             }
 
-            return tests;
+            double[] test = tests.ToArray();
+            return test;
         }
     }
 }
