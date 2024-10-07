@@ -49,11 +49,11 @@ namespace AlgorithmLab1
             };
             _approximationValues = new ObservableCollection<ObservablePoint>
             {
-                // Стандартные аппроксимации. Отображаются при загрузке.
-                    new ObservablePoint(0, 0),
-                    new ObservablePoint(4, 4),
-                    new ObservablePoint(8, 0),
-                    new ObservablePoint(12, 4),
+                // Стандартные точки аппроксимации. Отображаются при загрузке.
+                    //new ObservablePoint(0, 0),
+                    //new ObservablePoint(4, 4),
+                    //new ObservablePoint(8, 0),
+                    //new ObservablePoint(12, 4),
             };
             Series = new ObservableCollection<ISeries>
             {
@@ -197,7 +197,7 @@ namespace AlgorithmLab1
         {
             Pow p = new Pow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -220,7 +220,7 @@ namespace AlgorithmLab1
         {
             QuickPow p = new QuickPow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- I  RunQuick1Pow
@@ -243,7 +243,7 @@ namespace AlgorithmLab1
         {
             QuickPow1 p = new QuickPow1();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- I  RunRecPow
@@ -266,7 +266,7 @@ namespace AlgorithmLab1
         {
             RecPow p = new RecPow();
             double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -290,7 +290,7 @@ namespace AlgorithmLab1
         {
             StoogeSort b = new StoogeSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, b);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -314,7 +314,7 @@ namespace AlgorithmLab1
         {
             Constant c = new Constant();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, c);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -338,7 +338,7 @@ namespace AlgorithmLab1
         {
             Sum p = new Sum();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- I  RunMul()
@@ -361,7 +361,7 @@ namespace AlgorithmLab1
         {
             Multiply p = new Multiply();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -385,7 +385,7 @@ namespace AlgorithmLab1
         {
             Horner p = new Horner();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -409,7 +409,7 @@ namespace AlgorithmLab1
         {
             BubbleSort p = new BubbleSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -434,7 +434,7 @@ namespace AlgorithmLab1
         {
             QuickSort p = new QuickSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -458,7 +458,7 @@ namespace AlgorithmLab1
         {
             TimSort p = new TimSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -484,7 +484,7 @@ namespace AlgorithmLab1
         {
             MatrixMultiplication p = new MatrixMultiplication();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
 
@@ -508,7 +508,7 @@ namespace AlgorithmLab1
         {
             CycleSort p = new CycleSort();
             double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
-            UpdateData(time);
+            UpdateData(time, StartTextBox, StepTextBox);
         }
 
         // ------------------------------------------------------------------- II  RunSoR()
