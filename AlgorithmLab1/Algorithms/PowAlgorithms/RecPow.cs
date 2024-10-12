@@ -8,12 +8,13 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class RecPow : PowAlgorithm
     {
-        public override void ExecuteAlgorithm(int[] vector, int n)
+        public override int ExecuteAlgorithm(int[] vector, int n)
         {
             for (int i = 0; i < vector.Length; i++)
             {
                 vector[i] = Pow(vector[i], n);
             }
+            return 0;
         }
         private int Pow(int x, int n)
         {

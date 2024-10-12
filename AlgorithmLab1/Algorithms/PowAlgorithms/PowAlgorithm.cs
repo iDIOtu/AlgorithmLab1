@@ -12,6 +12,6 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
         protected int k;
         protected int c;
 
-        public virtual void ExecuteAlgorithm(int[] vector, int power) { }
+        public virtual int ExecuteAlgorithm(int[] vector, int power) { return 0; }
     }
 }

@@ -8,7 +8,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class QuickPow : PowAlgorithm
     {
-        public override void ExecuteAlgorithm(int[] vector, int power)
+        public override int ExecuteAlgorithm(int[] vector, int power)
         {
             for (int i = 0; i < vector.Length; i++)
             {
@@ -31,6 +31,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 
                 vector[i] = f;
             }
+            return 0;
         }
     }
 }
