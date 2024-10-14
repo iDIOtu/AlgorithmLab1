@@ -10,6 +10,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
     {
         public override int ExecuteAlgorithm(int[] vector, int power)
         {
+            int step = 0;
             for (int i = 0; i < vector.Length; i++)
             {
                 c = vector[i];
@@ -17,9 +18,8 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
                 k = power;
 
                 while (k != 0)
-
-
                 {
+                    step++;
                     if (k % 2 == 0)
                     {
                         c *= c;
@@ -34,7 +34,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 
                 vector[i] = f;
             }
-            return 0;
+            return step;
         }
     }
 }

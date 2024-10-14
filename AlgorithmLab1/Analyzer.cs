@@ -52,7 +52,7 @@ namespace AlgorithmLab1_console_
                 tests[i] = 0;
                 for (int j = 0;j < repeats; j++)
                 {
-                    tests[i] += steps[j, i] / repeats;
+                    tests[i] += (double)steps[j, i] / repeats;
                 }
 
             }
