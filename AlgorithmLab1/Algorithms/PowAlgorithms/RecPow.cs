@@ -24,12 +24,13 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
             if (n == 0)
             {
                 f = 1;
+                step++;
             }
             else
             {
                 f = Pow(x, n / 2);
-
                 f = n % 2 == 1 ? f * f * x : f * f;
+                step++;
             }
 
             return f;

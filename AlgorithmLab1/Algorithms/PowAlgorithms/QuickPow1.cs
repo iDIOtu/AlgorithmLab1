@@ -19,16 +19,19 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 
                 while (k != 0)
                 {
-                    step++;
                     if (k % 2 == 0)
                     {
                         c *= c;
+                        step++;
                         k /= 2;
+                        step++;
                     }
                     else
                     {
                         f *= c;
+                        step++;
                         k--;
+                        step++;
                     }
                 }
 

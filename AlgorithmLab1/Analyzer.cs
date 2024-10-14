@@ -40,23 +40,23 @@ namespace AlgorithmLab1_console_
 
         public static double[] Timing(int n,  int repeats, PowAlgorithm algorithm, int power)
         {
-            double[] tests = new double[n];
-            int[,] steps = new int[repeats,n];
+            double[] steps = new double[n];
+            int[] tests = new int[repeats];
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < repeats; j++)
                 {
                     int[] vector = Generator.VectorInput(i + 1);
-                    steps[j,i] = algorithm.ExecuteAlgorithm(vector, power);
+                    tests[j] = algorithm.ExecuteAlgorithm(vector, power);
                 }
-                tests[i] = 0;
+                steps[i] = 0;
                 for (int j = 0;j < repeats; j++)
                 {
-                    tests[i] += (double)steps[j, i] / repeats;
+                    steps[i] += (double)tests[j] / repeats;
                 }
 
             }
-            return tests;
+            return steps;
         }
 
         public static double[] Timing(int n, int start, int steps, int repeats, MatrixMultiplication algorithm)

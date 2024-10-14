@@ -20,13 +20,15 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 
                 do
                 {
-                    step++;
                     k /= 2;
+                    step++;
                     c *= c;
-
+                    step++;
                     if (k % 2 == 1)
                     {
+                        step++;
                         f *= c;
+                        step++;
                     }
 
                 } while (k != 0);
