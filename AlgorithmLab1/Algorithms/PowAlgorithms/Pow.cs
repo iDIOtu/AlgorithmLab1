@@ -9,24 +9,26 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class Pow : PowAlgorithm
     {
-        public override int ExecuteAlgorithm(int[] vector, int power)
-        { 
+        public override int ExecuteAlgorithm(int[] vector, int p)
+        {
             int step = 0;
-            for (int i = 0; i < vector.Length; i++)
+            int result = 1;
+
+            int n = p;
+            int power = vector.Length;
+
+            
+            f = 1;
+            int k = 0;
+            while (k < power)
             {
-                f = 1;
-                k = 0;
-                while (k < power)
-                {
-
-                    f *= vector[i];
-                    step++;
-                    k++;
-                    step++;
-                }
-
-                vector[i] = f;
+                step++;
+                f *= n;
+                k++;
             }
+
+            result = f;
+            
             return step;
         }
     }

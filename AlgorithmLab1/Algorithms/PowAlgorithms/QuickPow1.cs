@@ -8,34 +8,27 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class QuickPow1 : PowAlgorithm
     {
-        public override int ExecuteAlgorithm(int[] vector, int power)
+        public override int ExecuteAlgorithm(int[] vector, int p)
         {
             int step = 0;
-            for (int i = 0; i < vector.Length; i++)
+            double result = 1;
+            int n = p; // Основание степени
+            int power = vector.Length;
+
+            while (power != 0)
             {
-                c = vector[i];
-                f = 1;
-                k = power;
+                step++;
 
-                while (k != 0)
+                if (power % 2 == 0)
                 {
-                    if (k % 2 == 0)
-                    {
-                        c *= c;
-                        step++;
-                        k /= 2;
-                        step++;
-                    }
-                    else
-                    {
-                        f *= c;
-                        step++;
-                        k--;
-                        step++;
-                    }
+                    n *= n;
+                    power /= 2;
                 }
-
-                vector[i] = f;
+                else 
+                {
+                    result *= n;
+                    power--;
+                }
             }
             return step;
         }

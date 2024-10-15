@@ -11,26 +11,24 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
         int step = 0;
         public override int ExecuteAlgorithm(int[] vector, int n)
         {
-            for (int i = 0; i < vector.Length; i++)
-            {
-                vector[i] = Pow(vector[i], n);
-            }
+            int power = vector.Length;
+
+            k = Pow(n, power);
+
             return step;
         }
         private int Pow(int x, int n)
         {
-            f = 0;
             step++;
+            f = 0;
             if (n == 0)
             {
                 f = 1;
-                step++;
             }
             else
             {
                 f = Pow(x, n / 2);
                 f = n % 2 == 1 ? f * f * x : f * f;
-                step++;
             }
 
             return f;
