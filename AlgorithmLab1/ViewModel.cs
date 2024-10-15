@@ -67,6 +67,7 @@ namespace AlgorithmLab1
                     {
                         Values = _observableValues,
                         Fill = new SolidColorPaint(SKColors.LightBlue),
+                        LineSmoothness = 0,
                         GeometrySize = 2
                     },
                     new LineSeries<ObservablePoint>

@@ -8,7 +8,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class PowAlgorithm
     {
-        protected int f;
+        protected int f; // Что это? оставь комментарий тот, кто писал
         protected int k;
         protected int c;
 
