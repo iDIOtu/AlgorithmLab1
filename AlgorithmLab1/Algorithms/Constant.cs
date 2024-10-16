@@ -10,7 +10,12 @@ namespace AlgorithmLab1_console_.Algorithms
     {
         public override void ExecuteAlgorithm(int[] vector)
         {
-            int x = 1;
+            int factorial = 1;
+
+            for (int i = 0; i < 100000; i++)
+            {
+                factorial = factorial * i;
+            }
         }
     }
 }

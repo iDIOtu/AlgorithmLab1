@@ -18,6 +18,17 @@ namespace AlgorithmLab1
             return vector;
         }
 
+        public static int[] GeneratePowers(int n)
+        {
+            int[] vector = new int[n];
+
+            for (int i = 1; i < n; i++)
+            {
+                vector[i] = i;
+            }
+
+            return vector;
+        }
         public static int[,] MatrixInput(int n)
         {
             int[,] matrix = new int[n, n];

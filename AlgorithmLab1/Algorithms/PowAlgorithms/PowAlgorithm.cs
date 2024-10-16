@@ -11,7 +11,8 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
         protected int f; // Что это? оставь комментарий тот, кто писал
         protected int k;
         protected int c;
+        protected int p = 2;
 
-        public virtual int ExecuteAlgorithm(int[] vector, int power) { return 0; }
+        public virtual int ExecuteAlgorithm(int[] vector) { return 0; }
     }
 }

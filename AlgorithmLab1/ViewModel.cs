@@ -197,7 +197,7 @@ namespace AlgorithmLab1
         private void RunPow()
         {
             Pow p = new Pow();
-            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
             double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
             UpdateApproximation(approximation, StartTextBox, StepTextBox);
@@ -222,7 +222,7 @@ namespace AlgorithmLab1
         private void RunQuickPow()
         {
             QuickPow p = new QuickPow();
-            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
             double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
             UpdateApproximation(approximation, StartTextBox, StepTextBox);
@@ -247,7 +247,7 @@ namespace AlgorithmLab1
         private void RunQuickPow1()
         {
             QuickPow1 p = new QuickPow1();
-            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
             double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
             UpdateApproximation(approximation, StartTextBox, StepTextBox);
@@ -272,7 +272,7 @@ namespace AlgorithmLab1
         private void RunRecPow()
         {
             RecPow p = new RecPow();
-            double[] time = Analyzer.Timing(NTextBox, RepeatTextBox, p, PowerTextBox);
+            double[] time = Analyzer.Timing(NTextBox, StartTextBox, StepTextBox, RepeatTextBox, p);
             double[] approximation = Approximation.GetPolApproximation(StartTextBox, StepTextBox, time);
             UpdateData(time, StartTextBox, StepTextBox);
             UpdateApproximation(approximation, StartTextBox, StepTextBox);

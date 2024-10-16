@@ -8,7 +8,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class QuickPow : PowAlgorithm
     {
-        public override int ExecuteAlgorithm(int[] vector, int p)
+        public override int ExecuteAlgorithm(int[] vector)
         {
             int step = 0;
             int result;

@@ -8,7 +8,7 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 {
     internal class QuickPow1 : PowAlgorithm
     {
-        public override int ExecuteAlgorithm(int[] vector, int p)
+        public override int ExecuteAlgorithm(int[] vector)
         {
             int step = 0;
             double result = 1;
@@ -17,17 +17,18 @@ namespace AlgorithmLab1_console_.Algorithms.PowAlgorithms
 
             while (power != 0)
             {
-                step++;
 
                 if (power % 2 == 0)
                 {
                     n *= n;
                     power /= 2;
+                    step += 2;
                 }
                 else 
                 {
                     result *= n;
                     power--;
+                    step += 2;
                 }
             }
             return step;
